@@ -3,6 +3,9 @@ package FizzBuzz
 import "strconv"
 
 func Convert(number int) string {
+	if divisibleBy(number, 15) {
+		return "FizzBuzz"
+	}
 	if divisibleBy(number, 3) {
 		return "Fizz"
 	}

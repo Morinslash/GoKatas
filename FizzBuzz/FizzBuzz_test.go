@@ -64,3 +64,23 @@ func TestConvertNumberDivisibleBy5Should(t *testing.T) {
 		})
 	}
 }
+
+func TestConvertNumberDivisibleByBoth3and5Should(t *testing.T) {
+	var testsValues = []struct {
+		testName string
+		input    int
+		expected string
+	}{
+		{"return FizzBuzz when 15 provided", 15, "FizzBuzz"},
+		{"return FizzBuzz when 30 provided", 30, "FizzBuzz"},
+		{"return FizzBuzz when 45 provided", 45, "FizzBuzz"},
+	}
+	for _, testValue := range testsValues {
+		t.Run(testValue.testName, func(t *testing.T) {
+			got := FizzBuzz.Convert(testValue.input)
+			if got != testValue.expected {
+				t.Errorf("Got: %q want: %q", got, testValue.expected)
+			}
+		})
+	}
+}
