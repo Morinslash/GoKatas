@@ -1,14 +1,13 @@
 package leapyear
 
 func IsLeap(year int) bool {
-
-	if year%100 == 0 && year%400 != 0 {
-		return false
-	}
-
-	if year%4 == 0 {
+	if isDivisible(400, year) || (isDivisible(4, year) && !isDivisible(100, year)) {
 		return true
 	}
 
 	return false
+}
+
+func isDivisible(divisor int, year int) bool {
+	return year%divisor == 0
 }
