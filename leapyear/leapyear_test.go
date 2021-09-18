@@ -11,12 +11,39 @@ type testCase struct {
 	expected bool
 }
 
-func TestLeapYearShould(t *testing.T) {
+func TestYearIsNotLeapIfNotDivisibleBy4(t *testing.T) {
 	var testCases = []testCase{
 		{name: "return false if year 1997", year: 1997, expected: false},
+	}
+	for _, test := range testCases {
+		t.Run(test.name, func(t *testing.T) {
+			got := leapyear.IsLeap(test.year)
+			if got != test.expected {
+				t.Errorf("Got: %v \n Expected: %v", got, test.expected)
+			}
+		})
+	}
+}
+
+func TestYearIsLeapIfDivisibleBy4(t *testing.T) {
+	var testCases = []testCase{
 		{name: "return true if year 1996", year: 1996, expected: true},
 		{name: "return true if year 1992", year: 1992, expected: true},
 		{name: "return true if year 1988", year: 1988, expected: true},
+	}
+	for _, test := range testCases {
+		t.Run(test.name, func(t *testing.T) {
+			got := leapyear.IsLeap(test.year)
+			if got != test.expected {
+				t.Errorf("Got: %v \n Expected: %v", got, test.expected)
+			}
+		})
+	}
+}
+
+func TestYearIsLeapIfDivisibleBy400(t *testing.T) {
+	var testCases = []testCase{
+		{name: "return true if year 1600", year: 1600, expected: true},
 	}
 	for _, test := range testCases {
 		t.Run(test.name, func(t *testing.T) {
